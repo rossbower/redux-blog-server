@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 // default index route
 app.get('/', (req, res) => {
-  res.send('hi');
+  res.send('Currently running blog server');
 });
 
 // START THE SERVER
