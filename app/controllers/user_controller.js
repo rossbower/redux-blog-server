@@ -7,11 +7,12 @@ export const signin = (req, res, next) => {
 };
 
 export const signup = (req, res, next) => {
+  const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
 
-  if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+  if (!email || !password || !name) {
+    return res.status(422).send('You must provide name, email, and password');
   }
 
   User.findOne({ email: req.body.email })
