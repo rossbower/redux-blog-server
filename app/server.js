@@ -14,7 +14,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 // default index route
 app.get('/', (req, res) => {
   res.send('Currently running blog server');
