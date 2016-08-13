@@ -7,11 +7,11 @@ export const signin = (req, res, next) => {
 };
 
 export const signup = (req, res, next) => {
-  const name = req.body.name;
+  const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
 
-  if (!email || !password || !name) {
+  if (!email || !password || !username) {
     return res.status(422).send('You must provide name, email, and password');
   }
 
@@ -24,11 +24,11 @@ export const signup = (req, res, next) => {
   .then(result => {
     if (result == null) {
       const user = new User();
-      user.name = req.body.name;
+      user.username = req.body.username;
       user.email = req.body.email;
       user.password = req.body.password;
       user.save();
-      res.json({ message: 'User created!' });
+      res.json({ token: tokenForUser(user), message: 'User created!' });
     } else {
       return res.status(422).send('User already exists!');
     }

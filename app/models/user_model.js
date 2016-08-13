@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt-nodejs';
 
 // create a schema for posts with a field
 const UserSchema = new Schema({
-  name: String,
+  username: String,
   email: { type: String, unique: true, lowercase: true },
   password: String,
 });
