@@ -10,6 +10,16 @@ const app = express();
 // enable/disable cross origin resource sharing if necessary
 app.use(cors());
 
+// enable json message body for posting data to API
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+// default index route
+app.get('/', (req, res) => {
+  res.send('Currently running blog server');
+});
+
 // START THE SERVER
 // =============================================================================
 const port = process.env.PORT || 9090;
@@ -22,18 +32,6 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blog';
 mongoose.connect(mongoURI);
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
-
-
-// enable json message body for posting data to API
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-
-// default index route
-app.get('/', (req, res) => {
-  res.send('Currently running blog server');
-});
-
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
